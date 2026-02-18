@@ -2,7 +2,7 @@
 #include <cmath>
 
 Globe::Globe(int pointCount, float radius)
-    : pointCount(pointCount), radius(radius) {
+    : pointCount(pointCount), radius(radius), rotation(0.0f) {
   GeneratePoints();
 }
 
@@ -38,13 +38,16 @@ void Globe::GeneratePoints() {
   }
 }
 
-void Globe::Update() {
-  // TODO: Animation logic
-}
+void Globe::Update() { rotation += 0.2f; }
 
 void Globe::Draw() {
+  rlPushMatrix();
+  rlRotatef(rotation, 0, 1, 0);
+
   for (const auto &point : points) {
     float radius = point.active ? 0.1f : 0.05f;
     DrawSphere(point.position, radius, point.color);
   }
+
+  rlPopMatrix();
 }
