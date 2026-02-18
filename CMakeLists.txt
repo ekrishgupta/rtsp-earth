@@ -16,6 +16,7 @@ FetchContent_MakeAvailable(raylib)
 # Setup Executable
 add_executable(${PROJECT_NAME} 
     src/main.cpp
+    src/Globe.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
