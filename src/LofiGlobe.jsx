@@ -51,31 +51,31 @@ const LofiGlobe = () => {
   };
 
   return (
-    <Globe
-      ref={globeEl}
-      onGlobeReady={handleGlobeReady}
-      globeImageUrl={null}
-      backgroundColor="#ffffff" // Crisp White Background
-      onGlobeReady={handleGlobeReady}
+    <div style={{ width: '100vw', height: '100vh', cursor: 'move' }}>
+      <Globe
+        ref={globeEl}
+        onGlobeReady={handleGlobeReady}
+        globeImageUrl={null}
+        backgroundColor="#ffffff" // Crisp White Background
 
-      // Landmass (Hexagons) - Darker Grey
-      hexPolygonsData={landPolygons}
-      hexPolygonResolution={3}
-      hexPolygonMargin={0.3}
-      hexPolygonColor={() => '#808080'} // Darker Grey Continents
+        // Landmass (Hexagons) - Darker Grey
+        hexPolygonsData={landPolygons}
+        hexPolygonResolution={3}
+        hexPolygonMargin={0.3}
+        hexPolygonColor={() => '#808080'} // Darker Grey Continents
 
-      // Stream Points
-      pointsData={streams}
-      pointAltitude={0.05}
-      pointColor="color"
-      pointRadius="size"
-      pointLabel="title"
+        // Stream Points
+        pointsData={streams}
+        pointAltitude={0.05}
+        pointColor="color"
+        pointRadius="size"
+        pointLabel="title"
 
-      // Atmosphere (Clean)
-      atmosphereColor="#ffffff"
-      atmosphereAltitude={0.1}
-    />
-    </div >
+        // Atmosphere (Clean)
+        atmosphereColor="#ffffff"
+        atmosphereAltitude={0.1}
+      />
+    </div>
   );
 };
 
