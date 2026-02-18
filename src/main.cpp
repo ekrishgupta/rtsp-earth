@@ -29,7 +29,7 @@ int main() {
     globe.Update();
 
     BeginDrawing();
-    ClearBackground(BLACK);
+    ClearBackground(RAYWHITE);
 
     BeginMode3D(camera);
     // DrawGrid(10, 1.0f);
@@ -46,7 +46,7 @@ int main() {
     // Dynamic Coordinates
     DrawText(TextFormat("LAT: %02.4f  LON: %02.4f", camera.position.x * 2.0f,
                         camera.position.z * 2.0f),
-             10, screenHeight - 30, 20, DARKGRAY);
+             10, screenHeight - 30, 20, BLACK);
 
     DrawFPS(10, 40);
 

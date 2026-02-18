@@ -40,7 +40,11 @@ void Globe::GeneratePoints() {
   }
 }
 
-void Globe::Update() { rotation += 0.2f; }
+void Globe::Update() {
+  if (!IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+    rotation += 0.2f;
+  }
+}
 
 void Globe::Draw() {
   rlPushMatrix();
