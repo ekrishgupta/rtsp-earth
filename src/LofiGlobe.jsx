@@ -36,16 +36,15 @@ const LofiGlobe = () => {
       // Auto-rotate
       globeEl.current.controls().autoRotate = true;
       globeEl.current.controls().autoRotateSpeed = 0.5;
+      globeEl.current.controls().enableZoom = true;
 
-      // Set Globe Material to Light Grey
-      // react-globe.gl forwards ref to ThreeGlobe, which has globeMaterial()
+      // Set Globe Material to Very Light Grey (The "Ocean")
       const globeObj = globeEl.current;
-      // Check if globeMaterial method exists (it should on ThreeGlobe instance)
       if (globeObj.globeMaterial) {
         const mat = globeObj.globeMaterial();
-        mat.color = new THREE.Color(0xe6e6e6);
-        mat.emissive = new THREE.Color(0x222222);
-        mat.emissiveIntensity = 0.1;
+        mat.color = new THREE.Color(0xf5f5f5); // Almost White/Light Grey
+        mat.emissive = new THREE.Color(0x000000); // No emissive glow
+        mat.shininess = 0; // Flat look
       }
     }
   };
@@ -57,12 +56,13 @@ const LofiGlobe = () => {
         onGlobeReady={handleGlobeReady}
         globeImageUrl={null}
         backgroundColor="#ffffff" // Crisp White Background
+        showAtmosphere={false} // Disable blue halo/vignette
 
-        // Landmass (Hexagons) - Darker Grey
+        // Landmass (Hexagons) - Dark Grey
         hexPolygonsData={landPolygons}
         hexPolygonResolution={3}
         hexPolygonMargin={0.3}
-        hexPolygonColor={() => '#808080'} // Darker Grey Continents
+        hexPolygonColor={() => '#d0d0d0'} // Light-Mid Grey for continents
 
         // Stream Points
         pointsData={streams}
@@ -70,10 +70,6 @@ const LofiGlobe = () => {
         pointColor="color"
         pointRadius="size"
         pointLabel="title"
-
-        // Atmosphere (Clean)
-        atmosphereColor="#ffffff"
-        atmosphereAltitude={0.1}
       />
     </div>
   );
