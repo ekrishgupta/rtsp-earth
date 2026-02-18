@@ -1,3 +1,4 @@
+#include "DataLoader.h"
 #include "Globe.h"
 #include "raylib.h"
 
@@ -10,6 +11,10 @@ int main() {
 
   // Globe setup
   Globe globe(2000, 4.0f); // 2000 points, radius 4.0
+
+  // Load Data
+  std::vector<StreamData> streams = DataLoader::LoadStreams("assets/data.json");
+  globe.AddStreams(streams);
 
   // Camera setup
   Camera3D camera = {0};
