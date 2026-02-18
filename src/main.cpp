@@ -37,6 +37,12 @@ int main() {
     EndMode3D();
 
     DrawText("RTSP_EARTH :: SYSTEM ONLINE", 10, 10, 20, RED);
+
+    // CRT Scanlines
+    for (int i = 0; i < screenHeight; i += 4) {
+      DrawLine(0, i, screenWidth, i, (Color){0, 0, 0, 100});
+    }
+
     DrawFPS(10, 40);
 
     EndDrawing();
