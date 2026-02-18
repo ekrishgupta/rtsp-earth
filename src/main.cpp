@@ -6,11 +6,12 @@ int main() {
   const int screenWidth = 800;
   const int screenHeight = 600;
 
+  SetConfigFlags(FLAG_MSAA_4X_HINT); // Enable Anti-aliasing for smooth points
   InitWindow(screenWidth, screenHeight, "RTSP Earth - Lofi Globe");
   SetTargetFPS(60);
 
   // Globe setup
-  Globe globe(10000, 4.0f); // 10000 points, radius 4.0
+  Globe globe(30000, 4.0f); // 30,000 points for dense visualization
 
   // Load Data
   std::vector<StreamData> streams = DataLoader::LoadStreams("assets/data.json");

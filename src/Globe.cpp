@@ -74,10 +74,19 @@ void Globe::Draw() {
   rlPushMatrix();
   rlRotatef(rotation, 0, 1, 0);
 
+  rlBegin(RL_POINTS);
   for (const auto &point : points) {
-    float radius = point.active ? 0.1f : 0.05f;
-    DrawSphere(point.position, radius, point.color);
+    // Skip invisible points entirely to save draw calls if strictly needed,
+    // but rlgl is fast enough to just push them with 0 alpha if we wanted.
+    // However, for "Minimal" look, we only draw visible ones.
+
+    if (point.color.a == 0)
+      continue;
+
+    rlColor4ub(point.color.r, point.color.g, point.color.b, point.color.a);
+    rlVertex3f(point.position.x, point.position.y, point.position.z);
   }
+  rlEnd();
 
   rlPopMatrix();
 }
