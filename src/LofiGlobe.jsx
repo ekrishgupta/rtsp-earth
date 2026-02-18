@@ -34,18 +34,20 @@ const LofiGlobe = () => {
   const handleGlobeReady = () => {
     if (globeEl.current) {
       // Auto-rotate
-      globeEl.current.controls().autoRotate = true;
-      globeEl.current.controls().autoRotateSpeed = 0.5;
-      globeEl.current.controls().enableZoom = true;
+      const controls = globeEl.current.controls();
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 0.5;
+      controls.enableZoom = true;
 
-      // Set Globe Material to Very Light Grey (The "Ocean")
-      const globeObj = globeEl.current;
-      if (globeObj.globeMaterial) {
-        // Switch to MeshBasicMaterial for flat, lighting-independent color
-        const oldMat = globeObj.globeMaterial();
-        const newMat = new THREE.MeshBasicMaterial({ color: 0xf2f2f2 }); // Very Light Grey
-        globeObj.globeMaterial(newMat);
-      }
+      // Force Globe Material to Light Grey (MeshBasicMaterial)
+      // Use setTimeout to ensure we override any internal initialization
+      setTimeout(() => {
+        const globeObj = globeEl.current;
+        if (globeObj && globeObj.globeMaterial) {
+          const newMat = new THREE.MeshBasicMaterial({ color: 0xe6e6e6 }); // Light Grey
+          globeObj.globeMaterial(newMat);
+        }
+      }, 100);
     }
   };
 
@@ -55,7 +57,7 @@ const LofiGlobe = () => {
         ref={globeEl}
         onGlobeReady={handleGlobeReady}
         globeImageUrl={null}
-        backgroundColor="#ffffff" // Crisp White Background
+        backgroundColor="rgba(0,0,0,0)" // Transparent, let body bg show through (White)
         showAtmosphere={false} // Disable blue halo/vignette
 
         // Landmass (Hexagons) - Dark Grey
