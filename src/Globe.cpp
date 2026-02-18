@@ -37,6 +37,6 @@ void Globe::Update() {
 
 void Globe::Draw() {
   for (const auto &point : points) {
-    DrawPoint3D(point.position, point.color);
+    DrawSphere(point.position, 0.05f, point.color);
   }
 }
