@@ -39,6 +39,11 @@ const LofiGlobe = () => {
       controls.autoRotateSpeed = 0.5;
       controls.enableZoom = true;
 
+      // Stop auto-rotation when user interacts
+      controls.addEventListener('start', () => {
+        controls.autoRotate = false;
+      });
+
       // Use setTimeout to ensure we override any internal initialization
       setTimeout(() => {
         const globeObj = globeEl.current;
