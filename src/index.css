@@ -13,23 +13,188 @@ body {
     position: relative;
 }
 
-/* UI Overlay Container */
-.overlay-container {
+/* Dashboard Layout */
+.overlay-top-left {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 10;
+    top: 32px;
+    left: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: auto;
 }
 
-.title-overlay {
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111;
+}
+
+.stats-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 100px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+    font-size: 13px;
+    color: #555;
+    font-weight: 500;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot-indicator {
+    width: 32px;
+    height: 16px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.separator {
+    color: #ddd;
+    font-weight: 300;
+}
+
+/* Top Right Controls */
+.overlay-top-right {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 24px;
-    font-weight: 600;
-    /* Semi-Bold */
+    top: 32px;
+    right: 32px;
+    display: flex;
+    gap: 12px;
+    pointer-events: auto;
+}
+
+.control-btn {
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #555;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    background: #f9f9f9;
     color: #000;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Bottom Left List */
+.overlay-bottom-left {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    pointer-events: auto;
+}
+
+.locations-card {
+    background: #fff;
+    width: 280px;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    /* Soft diffuse shadow */
+    border: 1px solid #f5f5f5;
+}
+
+.locations-card h3 {
+    margin: 0 0 16px 0;
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 700;
+}
+
+.locations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.location-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.location-item:last-child {
+    border-bottom: none;
+}
+
+.location-item .rank {
+    color: #ccc;
+    width: 24px;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.location-item .city-name {
+    flex: 1;
+    font-weight: 600;
+    color: #222;
+}
+
+.location-item .count {
+    color: #444;
+    font-weight: 600;
+    text-align: right;
+    min-width: 30px;
+}
+
+/* Bottom Right Filter */
+.overlay-bottom-right {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    pointer-events: auto;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    font-family: inherit;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background: #fcfcfc;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
