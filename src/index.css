@@ -16,34 +16,40 @@ body {
 /* Dashboard Layout */
 .overlay-top-left {
     position: absolute;
-    top: 32px;
-    left: 32px;
+    top: 24px;
+    left: 24px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     pointer-events: auto;
 }
 
 .header-title {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin: 0;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     color: #111;
+}
+
+.header-title svg {
+    width: 20px;
+    height: 20px;
 }
 
 .stats-pill {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: #fff;
-    padding: 8px 16px;
+    padding: 6px 14px;
     border-radius: 100px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* Slightly stronger shadow */
     border: 1px solid #f0f0f0;
-    font-size: 13px;
+    font-size: 11px;
     color: #555;
     font-weight: 500;
 }
@@ -51,38 +57,45 @@ body {
 .stat-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
 
 .dot-indicator {
-    width: 32px;
-    height: 16px;
+    width: 24px;
+    /* Pill shape for 'circles' */
+    height: 12px;
     background-color: #e0e0e0;
-    border-radius: 8px;
+    border-radius: 6px;
     display: inline-block;
 }
 
 .separator {
     color: #ddd;
     font-weight: 300;
+    margin: 0 2px;
+}
+
+.stat-item svg {
+    width: 12px;
+    height: 12px;
 }
 
 /* Top Right Controls */
 .overlay-top-right {
     position: absolute;
-    top: 32px;
-    right: 32px;
+    top: 24px;
+    right: 24px;
     display: flex;
-    gap: 12px;
+    gap: 8px;
     pointer-events: auto;
 }
 
 .control-btn {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     background: #fff;
     border: 1px solid #eaeaea;
-    border-radius: 12px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,6 +103,11 @@ body {
     color: #555;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: all 0.2s ease;
+}
+
+.control-btn svg {
+    width: 16px;
+    height: 16px;
 }
 
 .control-btn:hover {
@@ -102,24 +120,24 @@ body {
 /* Bottom Left List */
 .overlay-bottom-left {
     position: absolute;
-    bottom: 32px;
-    left: 32px;
+    bottom: 24px;
+    left: 24px;
     pointer-events: auto;
 }
 
 .locations-card {
     background: #fff;
-    width: 280px;
-    border-radius: 20px;
-    padding: 24px;
+    width: 240px;
+    border-radius: 16px;
+    padding: 16px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     /* Soft diffuse shadow */
     border: 1px solid #f5f5f5;
 }
 
 .locations-card h3 {
-    margin: 0 0 16px 0;
-    font-size: 11px;
+    margin: 0 0 12px 0;
+    font-size: 10px;
     color: #999;
     text-transform: uppercase;
     letter-spacing: 0.8px;
@@ -132,15 +150,15 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .location-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0;
-    font-size: 14px;
+    padding: 6px 0;
+    font-size: 12px;
     color: #333;
     border-bottom: 1px solid #f9f9f9;
 }
@@ -151,9 +169,9 @@ body {
 
 .location-item .rank {
     color: #ccc;
-    width: 24px;
+    width: 20px;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .location-item .city-name {
@@ -166,32 +184,37 @@ body {
     color: #444;
     font-weight: 600;
     text-align: right;
-    min-width: 30px;
+    min-width: 24px;
 }
 
 /* Bottom Right Filter */
 .overlay-bottom-right {
     position: absolute;
-    bottom: 32px;
-    right: 32px;
+    bottom: 24px;
+    right: 24px;
     pointer-events: auto;
 }
 
 .filter-btn {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     background: #fff;
-    padding: 12px 20px;
-    border-radius: 12px;
+    padding: 10px 16px;
+    border-radius: 10px;
     border: 1px solid #eaeaea;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     font-family: inherit;
     font-weight: 600;
     color: #333;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
     transition: all 0.2s;
+}
+
+.filter-btn svg {
+    width: 14px;
+    height: 14px;
 }
 
 .filter-btn:hover {
