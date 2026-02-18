@@ -15,6 +15,7 @@ public:
 
   void Update();
   void Draw();
+  void AddStreams(const std::vector<StreamData> &streams);
 
 private:
   std::vector<GlobePoint> points;
