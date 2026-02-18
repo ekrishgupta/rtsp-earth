@@ -24,6 +24,7 @@ FetchContent_MakeAvailable(json)
 add_executable(${PROJECT_NAME} 
     src/main.cpp
     src/Globe.cpp
+    src/DataLoader.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib nlohmann_json::nlohmann_json)
