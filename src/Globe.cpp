@@ -5,7 +5,16 @@
 
 Globe::Globe(int pointCount, float radius)
     : pointCount(pointCount), radius(radius), rotation(0.0f) {
+
   Image map = LoadImage("assets/world_map.png");
+
+  // Fallback if image load failed (or is the 14-byte 404 file)
+  if (map.data == nullptr || map.width < 64) {
+    UnloadImage(map); // Safety
+    // Generate a "continent-like" noise map
+    map = GenImagePerlinNoise(512, 256, 0, 0, 2.0f);
+  }
+
   GeneratePoints(map);
   UnloadImage(map);
 }
