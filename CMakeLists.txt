@@ -13,13 +13,20 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
+# Fetch nlohmann_json
+FetchContent_Declare(
+    json
+    URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
+)
+FetchContent_MakeAvailable(json)
+
 # Setup Executable
 add_executable(${PROJECT_NAME} 
     src/main.cpp
     src/Globe.cpp
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+target_link_libraries(${PROJECT_NAME} PRIVATE raylib nlohmann_json::nlohmann_json)
 
 # Web configuration (Emscripten)
 if(EMSCRIPTEN)
