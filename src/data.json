@@ -1,0 +1,74 @@
+[
+    {
+        "title": "Times Square, NYC",
+        "country": "USA",
+        "city": "New York",
+        "latitude": 40.7580,
+        "longitude": -73.9855,
+        "url": "rtsp://..."
+    },
+    {
+        "title": "Shibuya Crossing, Tokyo",
+        "country": "Japan",
+        "city": "Tokyo",
+        "latitude": 35.6595,
+        "longitude": 139.7004,
+        "url": "rtsp://..."
+    },
+    {
+        "title": "Eiffel Tower, Paris",
+        "country": "France",
+        "city": "Paris",
+        "latitude": 48.8584,
+        "longitude": 2.2945,
+        "url": "rtsp://..."
+    },
+    {
+        "title": "Sydney Opera House",
+        "country": "Australia",
+        "city": "Sydney",
+        "latitude": -33.8568,
+        "longitude": 151.2153,
+        "url": "rtsp://..."
+    },
+    {
+        "title": "Rio de Janeiro",
+        "country": "Brazil",
+        "city": "Rio",
+        "latitude": -22.9068,
+        "longitude": -43.1729,
+        "url": "rtsp://..."
+    },
+    {
+        "title": "London Eye",
+        "country": "UK",
+        "city": "London",
+        "latitude": 51.5033,
+        "longitude": -0.1195,
+        "url": "rtsp://..."
+    },
+    {
+        "title": "Red Square",
+        "country": "Russia",
+        "city": "Moscow",
+        "latitude": 55.7539,
+        "longitude": 37.6208,
+        "url": "rtsp://..."
+    },
+    {
+        "title": "Taj Mahal",
+        "country": "India",
+        "city": "Agra",
+        "latitude": 27.1751,
+        "longitude": 78.0421,
+        "url": "rtsp://..."
+    },
+    {
+        "title": "Pyramids of Giza",
+        "country": "Egypt",
+        "city": "Cairo",
+        "latitude": 29.9792,
+        "longitude": 31.1342,
+        "url": "rtsp://..."
+    }
+]
