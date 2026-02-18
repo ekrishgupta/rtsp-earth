@@ -3,8 +3,9 @@
 A native C++ application visualizing global data on a 3D globe with a lo-fi/monochrome aesthetic. Built with Raylib.
 
 ## Features
-- **Lofi Aesthetic**: Monochrome visuals with CRT scanlines and red accents.
-- **3D Globe**: Custom Fibonacci sphere point cloud rendering.
+- **Lofi Aesthetic**: Light Monochrome visuals (White/Black) with CRT scanlines and red accents.
+- **3D Globe**: Custom Fibonacci sphere point cloud with **Continent Filtering** via texture sampling.
+- **Interaction**: Auto-rotation pauses on user interaction (Click/Drag).
 - **Data Integration**: Loads stream metadata from JSON and maps it to 3D coordinates.
 - **Cross-Platform**: Built with CMake for macOS/Linux/Windows.
 
