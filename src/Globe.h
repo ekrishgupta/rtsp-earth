@@ -23,5 +23,5 @@ private:
   int pointCount;
   float rotation;
 
-  void GeneratePoints();
+  void GeneratePoints(const Image &map);
 };
