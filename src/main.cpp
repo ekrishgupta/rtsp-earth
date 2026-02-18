@@ -43,6 +43,11 @@ int main() {
       DrawLine(0, i, screenWidth, i, (Color){0, 0, 0, 100});
     }
 
+    // Dynamic Coordinates
+    DrawText(TextFormat("LAT: %02.4f  LON: %02.4f", camera.position.x * 2.0f,
+                        camera.position.z * 2.0f),
+             10, screenHeight - 30, 20, DARKGRAY);
+
     DrawFPS(10, 40);
 
     EndDrawing();
