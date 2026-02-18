@@ -61,7 +61,7 @@ const LofiGlobe = () => {
   };
 
   return (
-    <div style={{ width: '100vw', height: '100vh', cursor: 'move', marginLeft: '25vw' }}>
+    <div style={{ width: '100vw', height: '100vh', cursor: 'move', marginLeft: '8vw' }}>
       <Globe
         ref={globeEl}
         onGlobeReady={handleGlobeReady}
