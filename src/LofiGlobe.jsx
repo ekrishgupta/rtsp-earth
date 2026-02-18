@@ -36,7 +36,7 @@ const LofiGlobe = () => {
       // Auto-rotate
       const controls = globeEl.current.controls();
       controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.5;
+      controls.autoRotateSpeed = 0.7;
       controls.enableZoom = true;
 
       // Stop auto-rotation when user interacts
