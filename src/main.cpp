@@ -1,40 +1,43 @@
+#include "Globe.h"
 #include "raylib.h"
 
-int main()
-{
-    const int screenWidth = 800;
-    const int screenHeight = 600;
+int main() {
+  const int screenWidth = 800;
+  const int screenHeight = 600;
 
-    InitWindow(screenWidth, screenHeight, "RTSP Earth - Lofi Globe");
-    SetTargetFPS(60);
+  InitWindow(screenWidth, screenHeight, "RTSP Earth - Lofi Globe");
+  SetTargetFPS(60);
 
-    // Camera setup
-    Camera3D camera = { 0 };
-    camera.position = (Vector3){ 10.0f, 10.0f, 10.0f };
-    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };
-    camera.fovy = 45.0f;
-    camera.projection = CAMERA_PERSPECTIVE;
+  // Globe setup
+  Globe globe(2000, 4.0f); // 2000 points, radius 4.0
 
-    while (!WindowShouldClose())
-    {
-        UpdateCamera(&camera, CAMERA_ORBITAL);
+  // Camera setup
+  Camera3D camera = {0};
+  camera.position = (Vector3){10.0f, 10.0f, 10.0f};
+  camera.target = (Vector3){0.0f, 0.0f, 0.0f};
+  camera.up = (Vector3){0.0f, 1.0f, 0.0f};
+  camera.fovy = 45.0f;
+  camera.projection = CAMERA_PERSPECTIVE;
 
-        BeginDrawing();
-            ClearBackground(BLACK);
+  while (!WindowShouldClose()) {
+    UpdateCamera(&camera, CAMERA_ORBITAL);
+    globe.Update();
 
-            BeginMode3D(camera);
-                DrawGrid(10, 1.0f);
-                DrawSphereWires((Vector3){0, 0, 0}, 2.0f, 16, 16, DARKGRAY);
-            EndMode3D();
+    BeginDrawing();
+    ClearBackground(BLACK);
 
-            DrawText("RTSP_EARTH :: SYSTEM ONLINE", 10, 10, 20, RED);
-            DrawFPS(10, 40);
+    BeginMode3D(camera);
+    // DrawGrid(10, 1.0f);
+    globe.Draw();
+    EndMode3D();
 
-        EndDrawing();
-    }
+    DrawText("RTSP_EARTH :: SYSTEM ONLINE", 10, 10, 20, RED);
+    DrawFPS(10, 40);
 
-    CloseWindow();
+    EndDrawing();
+  }
 
-    return 0;
+  CloseWindow();
+
+  return 0;
 }
