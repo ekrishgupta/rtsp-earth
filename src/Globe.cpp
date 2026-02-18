@@ -1,4 +1,5 @@
 #include "Globe.h"
+#include "DataLoader.h"
 #include <cmath>
 
 Globe::Globe(int pointCount, float radius)
@@ -50,4 +51,22 @@ void Globe::Draw() {
   }
 
   rlPopMatrix();
+}
+
+void Globe::AddStreams(const std::vector<StreamData> &streams) {
+  for (const auto &stream : streams) {
+    float theta = (90 - stream.latitude) * PI / 180.0f;
+    float phi = (stream.longitude + 180) * PI / 180.0f;
+
+    float x = -((radius + 0.1f) * sin(theta) * cos(phi));
+    float z = (radius + 0.1f) * sin(theta) * sin(phi);
+    float y = (radius + 0.1f) * cos(theta);
+
+    GlobePoint point;
+    point.position = {x, y, z};
+    point.color = RED;
+    point.active = true;
+
+    points.push_back(point);
+  }
 }
