@@ -20,6 +20,7 @@ private:
   std::vector<GlobePoint> points;
   float radius;
   int pointCount;
+  float rotation;
 
   void GeneratePoints();
 };
