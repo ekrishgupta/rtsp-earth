@@ -10,7 +10,7 @@ int main() {
   SetTargetFPS(60);
 
   // Globe setup
-  Globe globe(2000, 4.0f); // 2000 points, radius 4.0
+  Globe globe(10000, 4.0f); // 10000 points, radius 4.0
 
   // Load Data
   std::vector<StreamData> streams = DataLoader::LoadStreams("assets/data.json");

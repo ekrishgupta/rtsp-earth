@@ -37,17 +37,20 @@ void Globe::GeneratePoints(const Image &map) {
 
     Color pixel = GetImageColor(map, px % map.width, py % map.height);
 
-    // If pixel is dark (water), skip or render faintly
-    if (pixel.r < 50)
-      continue; // Skip water points
+    GlobePoint point;
+
+    // If pixel is dark (water), make it faint gray
+    if (pixel.r < 50) {
+      point.color = (Color){200, 200, 200, 50}; // Faint Light Gray
+      point.active = false;
+    } else {
+      point.color = BLACK;
+      point.active = false;
+    }
 
     Vector3 pos = {x * radius, y * radius, z * radius};
 
-    GlobePoint point;
     point.position = pos;
-    point.color = BLACK;
-    point.active = false;
-
     points.push_back(point);
   }
 }
