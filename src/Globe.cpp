@@ -24,8 +24,15 @@ void Globe::GeneratePoints() {
 
     GlobePoint point;
     point.position = pos;
-    point.color = DARKGRAY; // Default "Lofi" color
-    point.active = false;
+
+    // simple random activation for "Lofi" aesthetic
+    if (GetRandomValue(0, 100) < 5) { // 5% chance
+      point.color = RED;
+      point.active = true;
+    } else {
+      point.color = DARKGRAY;
+      point.active = false;
+    }
 
     points.push_back(point);
   }
@@ -37,6 +44,7 @@ void Globe::Update() {
 
 void Globe::Draw() {
   for (const auto &point : points) {
-    DrawSphere(point.position, 0.05f, point.color);
+    float radius = point.active ? 0.1f : 0.05f;
+    DrawSphere(point.position, radius, point.color);
   }
 }
