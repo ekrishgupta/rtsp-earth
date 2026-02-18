@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/krishgupta/Projects/rtsp-earth/build/_deps/raylib-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
