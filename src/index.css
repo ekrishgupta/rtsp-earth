@@ -1,11 +1,97 @@
+/* Base Reset */
 body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    /* Tech/Lofi Font */
 }
 
 #root {
-  width: 100vw;
-  height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* UI Overlay Container */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Let clicks pass through to Globe */
+    z-index: 10;
+}
+
+/* UI Panels */
+.ui-panel {
+    position: absolute;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #000;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.top-left {
+    top: 20px;
+    left: 20px;
+}
+
+.bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+/* Status Lines */
+.status-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.label {
+    color: #555;
+}
+
+.value {
+    color: #000;
+}
+
+.value.safe {
+    color: green;
+}
+
+.value.highlight {
+    color: red;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* CRT Scanlines */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0) 50%,
+            rgba(0, 0, 0, 0.1) 50%,
+            rgba(0, 0, 0, 0.1));
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0.6;
 }
