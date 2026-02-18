@@ -36,5 +36,7 @@ void Globe::Update() {
 }
 
 void Globe::Draw() {
-  // TODO: Rendering logic
+  for (const auto &point : points) {
+    DrawPoint3D(point.position, point.color);
+  }
 }
