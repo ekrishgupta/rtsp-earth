@@ -12,7 +12,7 @@ Globe::Globe(int pointCount, float radius)
   if (map.data == nullptr || map.width < 64) {
     UnloadImage(map); // Safety
     // Generate a "continent-like" noise map
-    map = GenImagePerlinNoise(512, 256, 0, 0, 2.0f);
+    map = GenImagePerlinNoise(512, 256, 0, 0, 4.0f);
   }
 
   GeneratePoints(map);
@@ -49,7 +49,7 @@ void Globe::GeneratePoints(const Image &map) {
     GlobePoint point;
 
     // If pixel is dark (water), make it faint gray
-    if (pixel.r < 50) {
+    if (pixel.r < 100) {
       point.color = (Color){200, 200, 200, 50}; // Faint Light Gray
       point.active = false;
     } else {
