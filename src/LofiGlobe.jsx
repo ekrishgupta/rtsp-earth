@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Globe from 'react-globe.gl';
+import * as THREE from 'three';
 import streamData from './data.json';
 
 const LofiGlobe = () => {
@@ -25,9 +26,17 @@ const LofiGlobe = () => {
     }));
     setStreams(formattedStreams);
 
-    // Auto-rotate
-    globeEl.current.controls().autoRotate = true;
-    globeEl.current.controls().autoRotateSpeed = 0.5;
+    // Auto-rotate and Color Setup
+    if (globeEl.current) {
+      globeEl.current.controls().autoRotate = true;
+      globeEl.current.controls().autoRotateSpeed = 0.5;
+
+      // Set Globe Material to Light Grey (The "Planet")
+      const globeMaterial = globeEl.current.globeMaterial();
+      globeMaterial.color = new THREE.Color(0xe6e6e6); // Light Grey
+      globeMaterial.emissive = new THREE.Color(0x222222);
+      globeMaterial.emissiveIntensity = 0.1;
+    }
   }, []);
 
   return (
@@ -35,13 +44,13 @@ const LofiGlobe = () => {
       <Globe
         ref={globeEl}
         globeImageUrl={null}
-        backgroundColor="#ffffff"
+        backgroundColor="#ffffff" // Crisp White Background
 
-        // Landmass (Hexagons)
+        // Landmass (Hexagons) - Darker Grey
         hexPolygonsData={landPolygons}
         hexPolygonResolution={3}
         hexPolygonMargin={0.3}
-        hexPolygonColor={() => '#000000'}
+        hexPolygonColor={() => '#808080'} // Darker Grey Continents
 
         // Stream Points
         pointsData={streams}
@@ -50,8 +59,8 @@ const LofiGlobe = () => {
         pointRadius="size"
         pointLabel="title"
 
-        // Atmosphere
-        atmosphereColor="#aaaaaa"
+        // Atmosphere (Clean)
+        atmosphereColor="#ffffff"
         atmosphereAltitude={0.1}
       />
     </div>

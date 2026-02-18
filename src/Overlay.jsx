@@ -38,8 +38,6 @@ const Overlay = () => {
                 </div>
             </div>
 
-            {/* CRT Scanline Overlay */}
-            <div className="scanlines"></div>
         </div>
     );
 };
