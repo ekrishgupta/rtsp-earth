@@ -32,7 +32,7 @@ void Globe::GeneratePoints() {
       point.color = RED;
       point.active = true;
     } else {
-      point.color = DARKGRAY;
+      point.color = BLACK;
       point.active = false;
     }
 
