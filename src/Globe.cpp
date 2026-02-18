@@ -1,5 +1,6 @@
 #include "Globe.h"
 #include "DataLoader.h"
+#include "rlgl.h"
 #include <cmath>
 
 Globe::Globe(int pointCount, float radius)
