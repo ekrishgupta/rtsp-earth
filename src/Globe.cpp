@@ -3,6 +3,10 @@
 #include "rlgl.h"
 #include <cmath>
 
+#ifndef RL_POINTS
+#define RL_POINTS 0x0000
+#endif
+
 Globe::Globe(int pointCount, float radius)
     : pointCount(pointCount), radius(radius), rotation(0.0f) {
 
