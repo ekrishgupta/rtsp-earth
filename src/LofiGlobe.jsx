@@ -41,10 +41,10 @@ const LofiGlobe = () => {
       // Set Globe Material to Very Light Grey (The "Ocean")
       const globeObj = globeEl.current;
       if (globeObj.globeMaterial) {
-        const mat = globeObj.globeMaterial();
-        mat.color = new THREE.Color(0xf5f5f5); // Almost White/Light Grey
-        mat.emissive = new THREE.Color(0x000000); // No emissive glow
-        mat.shininess = 0; // Flat look
+        // Switch to MeshBasicMaterial for flat, lighting-independent color
+        const oldMat = globeObj.globeMaterial();
+        const newMat = new THREE.MeshBasicMaterial({ color: 0xf2f2f2 }); // Very Light Grey
+        globeObj.globeMaterial(newMat);
       }
     }
   };
@@ -62,7 +62,7 @@ const LofiGlobe = () => {
         hexPolygonsData={landPolygons}
         hexPolygonResolution={3}
         hexPolygonMargin={0.3}
-        hexPolygonColor={() => '#d0d0d0'} // Light-Mid Grey for continents
+        hexPolygonColor={() => '#a0a0a0'} // Darker Grey Continents
 
         // Stream Points
         pointsData={streams}
