@@ -67,7 +67,6 @@ const Overlay = () => {
                 </div>
             </div>
         </div>
-        </div >
     );
 };
 
