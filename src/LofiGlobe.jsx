@@ -39,12 +39,16 @@ const LofiGlobe = () => {
       controls.autoRotateSpeed = 0.5;
       controls.enableZoom = true;
 
-      // Force Globe Material to Light Grey (MeshBasicMaterial)
       // Use setTimeout to ensure we override any internal initialization
       setTimeout(() => {
         const globeObj = globeEl.current;
         if (globeObj && globeObj.globeMaterial) {
-          const newMat = new THREE.MeshBasicMaterial({ color: 0xe6e6e6 }); // Light Grey
+          // Switch to MeshLambertMaterial with high emissive to force light grey color
+          const newMat = new THREE.MeshLambertMaterial({
+            color: 0xffffff,
+            emissive: 0xf0f0f0,
+            emissiveIntensity: 1
+          });
           globeObj.globeMaterial(newMat);
         }
       }, 100);
