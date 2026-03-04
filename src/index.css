@@ -274,6 +274,45 @@ body {
     border: 1px solid #eee;
 }
 
+/* ── Search Modal ── */
+.search-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    padding-top: 15vh;
+    animation: fadeIn 0.15s ease-out;
+}
+
+.search-modal {
+    background: #fff;
+    width: 600px;
+    max-width: 90vw;
+    height: max-content;
+    max-height: 70vh;
+    border-radius: 16px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: zoomIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
 /* ── Stream Modal ─────────────────────────────── */
 .modal-backdrop {
     position: fixed;
