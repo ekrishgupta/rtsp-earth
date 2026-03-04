@@ -21,8 +21,8 @@ function App() {
 
     return (
         <GlobeProvider>
-            <Overlay onStreamSelect={handlePointClick} />
-            <LofiGlobe onPointClick={handlePointClick} />
+            <Overlay activeStreams={activeStreams} onStreamSelect={handlePointClick} />
+            <LofiGlobe streams={activeStreams} onPointClick={handlePointClick} />
             <SystemStatus />
             <StreamPlayer stream={selectedStream} onClose={handleClosePlayer} />
         </GlobeProvider>
