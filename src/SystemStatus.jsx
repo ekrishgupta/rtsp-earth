@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useSystem } from './SystemContext';
 
 const CONNECTION_SOURCES = [
     'Tokyo-NRT', 'London-LHR', 'NYC-JFK', 'Sydney-SYD', 'Moscow-SVO',
@@ -7,19 +7,15 @@ const CONNECTION_SOURCES = [
 ];
 
 const LOG_TEMPLATES = [
-    (src) => `[CONN] ${src} → stream handshake OK`,
     (src) => `[RTSP] ${src} DESCRIBE 200`,
     (src) => `[RTP]  ${src} packets: ${Math.floor(Math.random() * 500 + 100)}`,
     (src) => `[SIG]  ${src} signal: ${(Math.random() * 40 + 60).toFixed(1)}%`,
     (src) => `[PING] ${src} latency: ${Math.floor(Math.random() * 180 + 20)}ms`,
-    (src) => `[AUTH] ${src} session renewed`,
-    (src) => `[BUF]  ${src} buffer: ${Math.floor(Math.random() * 1024)}KB`,
-    (src) => `[DROP] ${src} packet loss: ${(Math.random() * 2).toFixed(2)}%`,
 ];
 
 const SystemStatus = () => {
+    const { logs, addLog } = useSystem();
     const [currentTime, setCurrentTime] = useState(new Date());
-    const [logEntries, setLogEntries] = useState([]);
     const [activeConns, setActiveConns] = useState(7);
     const [bandwidth, setBandwidth] = useState(12.4);
     const [uptime, setUptime] = useState(0);
@@ -37,34 +33,22 @@ const SystemStatus = () => {
         return () => clearInterval(timer);
     }, []);
 
-    // Scrolling log entries
+    // Background fluff logs
     useEffect(() => {
-        const addLogEntry = () => {
+        const interval = setInterval(() => {
             const src = CONNECTION_SOURCES[Math.floor(Math.random() * CONNECTION_SOURCES.length)];
             const template = LOG_TEMPLATES[Math.floor(Math.random() * LOG_TEMPLATES.length)];
-            const timestamp = new Date().toLocaleTimeString('en-US', { hour12: false });
-
-            setLogEntries(prev => {
-                const newEntries = [...prev, { id: Date.now(), time: timestamp, text: template(src) }];
-                return newEntries.slice(-20); // Keep last 20 entries
-            });
-        };
-
-        // Initial burst
-        for (let i = 0; i < 5; i++) {
-            setTimeout(addLogEntry, i * 200);
-        }
-
-        const interval = setInterval(addLogEntry, 1500 + Math.random() * 2000);
+            addLog(template(src));
+        }, 3000 + Math.random() * 3000);
         return () => clearInterval(interval);
-    }, []);
+    }, [addLog]);
 
     // Auto-scroll log
     useEffect(() => {
         if (logContainerRef.current) {
             logContainerRef.current.scrollTop = logContainerRef.current.scrollHeight;
         }
-    }, [logEntries]);
+    }, [logs]);
 
     // Fluctuate stats
     useEffect(() => {
@@ -113,7 +97,7 @@ const SystemStatus = () => {
 
             {/* Scrolling Log */}
             <div className="system-log" ref={logContainerRef}>
-                {logEntries.map(entry => (
+                {logs.map(entry => (
                     <div key={entry.id} className="log-entry">
                         <span className="log-time">{entry.time}</span>
                         <span className="log-text">{entry.text}</span>
