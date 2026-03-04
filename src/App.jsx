@@ -4,9 +4,11 @@ import Overlay from './Overlay';
 import StreamPlayer from './StreamPlayer';
 import SystemStatus from './SystemStatus';
 import { GlobeProvider } from './GlobeContext';
+import streamData from './data.json';
 import './index.css';
 
 function App() {
+    const [activeStreams, setActiveStreams] = useState(streamData);
     const [selectedStream, setSelectedStream] = useState(null);
 
     const handlePointClick = useCallback((point) => {
