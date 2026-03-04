@@ -4,12 +4,14 @@ import Overlay from './Overlay';
 import StreamPlayer from './StreamPlayer';
 import SystemStatus from './SystemStatus';
 import { GlobeProvider } from './GlobeContext';
+import { SystemProvider, useSystem } from './SystemContext';
 import streamData from './data.json';
 import './index.css';
 
-function App() {
+const AppContent = () => {
     const [activeStreams, setActiveStreams] = useState(streamData);
     const [selectedStream, setSelectedStream] = useState(null);
+    const { addLog } = useSystem();
 
     // Simulate dynamic stream status
     React.useEffect(() => {
@@ -19,20 +21,21 @@ function App() {
                 const randomIndex = Math.floor(Math.random() * newStreams.length);
                 const stream = newStreams[randomIndex];
 
-                // For simulation, we just log it or we could actually remove it
-                // To keep the UI stable but dynamic, let's just rotate the list
-                // OR better: actually remove and re-add after a delay
                 if (newStreams.length > 5 && Math.random() > 0.5) {
                     newStreams.splice(randomIndex, 1);
+                    addLog(`[DROP] Connection lost: ${stream.city}`);
                 } else if (newStreams.length < streamData.length) {
-                    const missing = streamData.find(s => !newStreams.includes(s));
-                    if (missing) newStreams.push(missing);
+                    const missing = streamData.find(s => !newStreams.some(active => active.title === s.title));
+                    if (missing) {
+                        newStreams.push(missing);
+                        addLog(`[CONN] New stream found: ${missing.city}`);
+                    }
                 }
                 return newStreams;
             });
         }, 8000);
         return () => clearInterval(interval);
-    }, []);
+    }, [addLog]);
 
     const handlePointClick = useCallback((point) => {
         setSelectedStream(point);
@@ -43,12 +46,22 @@ function App() {
     }, []);
 
     return (
-        <GlobeProvider>
+        <>
             <Overlay activeStreams={activeStreams} onStreamSelect={handlePointClick} />
             <LofiGlobe streams={activeStreams} onPointClick={handlePointClick} />
             <SystemStatus />
             <StreamPlayer stream={selectedStream} onClose={handleClosePlayer} />
-        </GlobeProvider>
+        </>
+    );
+};
+
+function App() {
+    return (
+        <SystemProvider>
+            <GlobeProvider>
+                <AppContent />
+            </GlobeProvider>
+        </SystemProvider>
     );
 }
 
