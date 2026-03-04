@@ -161,10 +161,26 @@ body {
     font-size: 12px;
     color: #333;
     border-bottom: 1px solid #f9f9f9;
+    transition: background 0.15s ease;
 }
 
 .location-item:last-child {
     border-bottom: none;
+}
+
+.location-item--clickable {
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 6px 6px;
+    margin: 0 -6px;
+}
+
+.location-item--clickable:hover {
+    background: #f4f4f4;
+}
+
+.location-item--clickable:hover .city-name {
+    color: #000;
 }
 
 .location-item .rank {
@@ -178,6 +194,7 @@ body {
     flex: 1;
     font-weight: 600;
     color: #222;
+    transition: color 0.15s ease;
 }
 
 .location-item .count {
@@ -220,4 +237,269 @@ body {
 .filter-btn:hover {
     background: #fcfcfc;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Stream Modal ─────────────────────────────── */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-card {
+    background: #fff;
+    border-radius: 20px;
+    width: 380px;
+    max-width: 92vw;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    animation: slideUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.modal-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff3b3b;
+    box-shadow: 0 0 0 3px rgba(255, 59, 59, 0.2);
+    animation: pulse 1.4s ease infinite;
+    flex-shrink: 0;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 3px rgba(255, 59, 59, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 0 6px rgba(255, 59, 59, 0.08);
+    }
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+}
+
+.modal-subtitle {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #999;
+    font-weight: 500;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #888;
+    transition: all 0.15s ease;
+}
+
+.modal-close:hover {
+    background: #f0f0f0;
+    color: #111;
+}
+
+.modal-body {
+    padding: 16px 20px 20px;
+}
+
+/* Connection step list */
+.conn-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.conn-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #bbb;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.conn-step--active {
+    color: #555;
+}
+
+.conn-step--done {
+    color: #2dba70;
+}
+
+.conn-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.conn-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ddd;
+}
+
+/* Spinner */
+.spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #ddd;
+    border-top-color: #555;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Stream preview */
+.stream-preview {
+    margin-top: 16px;
+    animation: fadeIn 0.3s ease;
+}
+
+.stream-placeholder {
+    position: relative;
+    background: #111;
+    border-radius: 10px;
+    height: 140px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stream-scanline {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px);
+    pointer-events: none;
+}
+
+.stream-center-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 1;
+}
+
+.stream-live-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #ff3b3b;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.stream-url {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+    font-family: monospace;
+}
+
+.stream-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.stream-btn {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: none;
+}
+
+.stream-btn--primary {
+    background: #111;
+    color: #fff;
+}
+
+.stream-btn--primary:hover {
+    background: #333;
+}
+
+.stream-btn--secondary {
+    background: #f5f5f5;
+    color: #444;
+    border: 1px solid #eee;
+}
+
+.stream-btn--secondary:hover {
+    background: #ececec;
 }
