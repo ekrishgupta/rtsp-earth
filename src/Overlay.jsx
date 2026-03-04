@@ -74,7 +74,7 @@ const Overlay = ({ activeStreams, onStreamSelect }) => {
                     rtsp-earth
                 </h1>
                 <div className="stats-pill">
-                    <div className="stat-item">
+                    <div className="stat-item" key={totalConnections}>
                         <span className="dot-indicator live" />
                         <span>{totalConnections} streams</span>
                     </div>
