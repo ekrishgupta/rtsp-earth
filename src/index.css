@@ -239,6 +239,41 @@ body {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
+/* ── Search Trigger ── */
+.search-trigger-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    padding: 0 12px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    color: #666;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.search-trigger-btn:hover {
+    background: #fdfdfd;
+    border-color: #ddd;
+    color: #111;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.search-shortcut {
+    font-size: 10px;
+    font-weight: 700;
+    color: #aaa;
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
 /* ── Stream Modal ─────────────────────────────── */
 .modal-backdrop {
     position: fixed;
