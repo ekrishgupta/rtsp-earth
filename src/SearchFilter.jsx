@@ -1,7 +1,10 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import streamData from './data.json';
 import { useGlobe } from './GlobeContext';
+import { useSystem } from './SystemContext';
 
 const SearchFilter = ({ streams, onResultSelect }) => {
+    const { addLog } = useSystem();
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
@@ -57,6 +60,8 @@ const SearchFilter = ({ streams, onResultSelect }) => {
                 1200
             );
         }
+
+        addLog(`[MANUAL] Operator selected ${stream.city} source`);
 
         if (onResultSelect) {
             onResultSelect({
