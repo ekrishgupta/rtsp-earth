@@ -1,14 +1,12 @@
-import React, { useCallback } from 'react';
-import streamData from './data.json';
-import SearchFilter from './SearchFilter';
 import { useGlobe } from './GlobeContext';
+import SearchFilter from './SearchFilter';
 
-const Overlay = ({ onStreamSelect }) => {
+const Overlay = ({ activeStreams, onStreamSelect }) => {
     const { globeRef } = useGlobe();
-    const totalConnections = streamData.length;
+    const totalConnections = activeStreams.length;
 
     // Aggregate data by city
-    const cityCounts = streamData.reduce((acc, curr) => {
+    const cityCounts = activeStreams.reduce((acc, curr) => {
         acc[curr.city] = (acc[curr.city] || 0) + 1;
         return acc;
     }, {});
@@ -55,8 +53,8 @@ const Overlay = ({ onStreamSelect }) => {
     }, [globeRef]);
 
     // Click location to fly to it
-    const handleLocationClick = useCallback((city) => {
-        const stream = streamData.find(s => s.city === city);
+    const handleLocationClick = (city) => {
+        const stream = activeStreams.find(s => s.city === city);
         if (stream && globeRef.current) {
             const controls = globeRef.current.controls();
             controls.autoRotate = false;
@@ -81,7 +79,7 @@ const Overlay = ({ onStreamSelect }) => {
                     </div>
                     <span className="separator">|</span>
                     <div className="stat-item">
-                        <span>{new Set(streamData.map(s => s.country)).size} countries</span>
+                        <span>{new Set(activeStreams.map(s => s.country)).size} countries</span>
                     </div>
                 </div>
             </div>
