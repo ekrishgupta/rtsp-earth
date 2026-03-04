@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import Globe from 'react-globe.gl';
 import * as THREE from 'three';
-import streamData from './data.json';
 import { useGlobe } from './GlobeContext';
 
 const DEFAULT_ALTITUDE = 2.5;
 
-const LofiGlobe = ({ streams, onPointClick }) => {
+const LofiGlobe = ({ streams = [], onPointClick }) => {
   const { globeRef } = useGlobe();
   const [landPolygons, setLandPolygons] = useState([]);
   const [pulsePhase, setPulsePhase] = useState(0);

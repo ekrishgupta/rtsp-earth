@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import streamData from './data.json';
 import { useGlobe } from './GlobeContext';
 
-const SearchFilter = ({ onResultSelect }) => {
+const SearchFilter = ({ streams, onResultSelect }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
@@ -11,19 +10,19 @@ const SearchFilter = ({ onResultSelect }) => {
 
     // Filter streams by query
     useEffect(() => {
-        if (!query.trim()) {
+        if (!query.trim() || !streams) {
             setResults([]);
             return;
         }
 
         const q = query.toLowerCase();
-        const filtered = streamData.filter(s =>
+        const filtered = streams.filter(s =>
             s.city.toLowerCase().includes(q) ||
             s.country.toLowerCase().includes(q) ||
             s.title.toLowerCase().includes(q)
         );
         setResults(filtered);
-    }, [query]);
+    }, [query, streams]);
 
     // Focus input when opened
     useEffect(() => {
@@ -113,7 +112,7 @@ const SearchFilter = ({ onResultSelect }) => {
                             <ul className="search-results">
                                 {results.map((stream, i) => (
                                     <li
-                                        key={`${stream.title}-${i}`}
+                                        key={`${stream.title} -${i} `}
                                         className="search-result-item"
                                         onClick={() => handleSelect(stream)}
                                     >
@@ -141,7 +140,7 @@ const SearchFilter = ({ onResultSelect }) => {
 
                         {!query && (
                             <div className="search-hint">
-                                Type to search across {streamData.length} active streams
+                                Type to search across {streams?.length || 0} active streams
                             </div>
                         )}
                     </div>

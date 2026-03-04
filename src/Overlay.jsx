@@ -1,3 +1,4 @@
+import React, { useCallback } from 'react';
 import { useGlobe } from './GlobeContext';
 import SearchFilter from './SearchFilter';
 
@@ -53,7 +54,7 @@ const Overlay = ({ activeStreams, onStreamSelect }) => {
     }, [globeRef]);
 
     // Click location to fly to it
-    const handleLocationClick = (city) => {
+    const handleLocationClick = useCallback((city) => {
         const stream = activeStreams.find(s => s.city === city);
         if (stream && globeRef.current) {
             const controls = globeRef.current.controls();
@@ -63,7 +64,7 @@ const Overlay = ({ activeStreams, onStreamSelect }) => {
                 1200
             );
         }
-    }, [globeRef]);
+    }, [globeRef, activeStreams]);
 
     return (
         <div className="overlay-container">
