@@ -6,10 +6,9 @@ import { useGlobe } from './GlobeContext';
 
 const DEFAULT_ALTITUDE = 2.5;
 
-const LofiGlobe = ({ onPointClick }) => {
+const LofiGlobe = ({ streams, onPointClick }) => {
   const { globeRef } = useGlobe();
   const [landPolygons, setLandPolygons] = useState([]);
-  const [streams, setStreams] = useState([]);
   const [pulsePhase, setPulsePhase] = useState(0);
 
   useEffect(() => {
@@ -19,24 +18,21 @@ const LofiGlobe = ({ onPointClick }) => {
       .then(countries => {
         setLandPolygons(countries.features);
       });
-
-    // Process stream data with safety check
-    if (Array.isArray(streamData)) {
-      const formattedStreams = streamData.map(s => ({
-        lat: s.latitude,
-        lng: s.longitude,
-        size: 0.5,
-        color: 'red',
-        title: s.title,
-        url: s.url,
-        city: s.city,
-        country: s.country,
-      }));
-      setStreams(formattedStreams);
-    } else {
-      console.error("streamData is not an array:", streamData);
-    }
   }, []);
+
+  // Format streams for the globe points
+  const globePoints = useMemo(() => {
+    return streams.map(s => ({
+      lat: s.latitude,
+      lng: s.longitude,
+      size: 0.5,
+      color: 'red',
+      title: s.title,
+      url: s.url,
+      city: s.city,
+      country: s.country,
+    }));
+  }, [streams]);
 
   // Pulse animation for points
   useEffect(() => {
@@ -110,14 +106,14 @@ const LofiGlobe = ({ onPointClick }) => {
 
   // Dynamic ring data for glow halos around points
   const ringsData = useMemo(() => {
-    return streams.map(s => ({
+    return globePoints.map(s => ({
       lat: s.lat,
       lng: s.lng,
       maxR: 2,
       propagationSpeed: 1.5,
       repeatPeriod: 1200,
     }));
-  }, [streams]);
+  }, [globePoints]);
 
   return (
     <div className="globe-container">
@@ -135,7 +131,7 @@ const LofiGlobe = ({ onPointClick }) => {
         hexPolygonColor={() => '#a0a0a0'}
 
         // Stream Points with glow
-        pointsData={streams}
+        pointsData={globePoints}
         pointAltitude={pointAltitude}
         pointColor={() => '#ff2020'}
         pointRadius={0.6}
