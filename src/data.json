@@ -5,7 +5,10 @@
         "city": "New York",
         "latitude": 40.7580,
         "longitude": -73.9855,
-        "url": "rtsp://..."
+        "url": "rtsp://streams.example.com/nyc-timessquare",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
     },
     {
         "title": "Shibuya Crossing, Tokyo",
@@ -13,7 +16,10 @@
         "city": "Tokyo",
         "latitude": 35.6595,
         "longitude": 139.7004,
-        "url": "rtsp://..."
+        "url": "rtsp://streams.example.com/tokyo-shibuya",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
     },
     {
         "title": "Eiffel Tower, Paris",
@@ -21,7 +27,10 @@
         "city": "Paris",
         "latitude": 48.8584,
         "longitude": 2.2945,
-        "url": "rtsp://..."
+        "url": "rtsp://streams.example.com/paris-eiffel",
+        "status": "active",
+        "resolution": "720p",
+        "fps": 25
     },
     {
         "title": "Sydney Opera House",
@@ -29,15 +38,21 @@
         "city": "Sydney",
         "latitude": -33.8568,
         "longitude": 151.2153,
-        "url": "rtsp://..."
+        "url": "rtsp://streams.example.com/sydney-opera",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
     },
     {
-        "title": "Rio de Janeiro",
+        "title": "Christ the Redeemer, Rio",
         "country": "Brazil",
-        "city": "Rio",
+        "city": "Rio de Janeiro",
         "latitude": -22.9068,
         "longitude": -43.1729,
-        "url": "rtsp://..."
+        "url": "rtsp://streams.example.com/rio-cristo",
+        "status": "active",
+        "resolution": "720p",
+        "fps": 25
     },
     {
         "title": "London Eye",
@@ -45,23 +60,32 @@
         "city": "London",
         "latitude": 51.5033,
         "longitude": -0.1195,
-        "url": "rtsp://..."
+        "url": "rtsp://streams.example.com/london-eye",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
     },
     {
-        "title": "Red Square",
+        "title": "Red Square, Moscow",
         "country": "Russia",
         "city": "Moscow",
         "latitude": 55.7539,
         "longitude": 37.6208,
-        "url": "rtsp://..."
+        "url": "rtsp://streams.example.com/moscow-redsquare",
+        "status": "active",
+        "resolution": "720p",
+        "fps": 25
     },
     {
-        "title": "Taj Mahal",
+        "title": "Taj Mahal, Agra",
         "country": "India",
         "city": "Agra",
         "latitude": 27.1751,
         "longitude": 78.0421,
-        "url": "rtsp://..."
+        "url": "rtsp://streams.example.com/agra-tajmahal",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
     },
     {
         "title": "Pyramids of Giza",
@@ -69,6 +93,130 @@
         "city": "Cairo",
         "latitude": 29.9792,
         "longitude": 31.1342,
-        "url": "rtsp://..."
+        "url": "rtsp://streams.example.com/cairo-pyramids",
+        "status": "active",
+        "resolution": "720p",
+        "fps": 25
+    },
+    {
+        "title": "Colosseum, Rome",
+        "country": "Italy",
+        "city": "Rome",
+        "latitude": 41.8902,
+        "longitude": 12.4922,
+        "url": "rtsp://streams.example.com/rome-colosseum",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
+    },
+    {
+        "title": "Brandenburg Gate, Berlin",
+        "country": "Germany",
+        "city": "Berlin",
+        "latitude": 52.5163,
+        "longitude": 13.3777,
+        "url": "rtsp://streams.example.com/berlin-brandenburg",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
+    },
+    {
+        "title": "Marina Bay Sands, Singapore",
+        "country": "Singapore",
+        "city": "Singapore",
+        "latitude": 1.2834,
+        "longitude": 103.8607,
+        "url": "rtsp://streams.example.com/singapore-marinabay",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
+    },
+    {
+        "title": "CN Tower, Toronto",
+        "country": "Canada",
+        "city": "Toronto",
+        "latitude": 43.6426,
+        "longitude": -79.3871,
+        "url": "rtsp://streams.example.com/toronto-cntower",
+        "status": "active",
+        "resolution": "720p",
+        "fps": 25
+    },
+    {
+        "title": "Burj Khalifa, Dubai",
+        "country": "UAE",
+        "city": "Dubai",
+        "latitude": 25.1972,
+        "longitude": 55.2744,
+        "url": "rtsp://streams.example.com/dubai-burjkhalifa",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
+    },
+    {
+        "title": "Gangnam District, Seoul",
+        "country": "South Korea",
+        "city": "Seoul",
+        "latitude": 37.4979,
+        "longitude": 127.0276,
+        "url": "rtsp://streams.example.com/seoul-gangnam",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
+    },
+    {
+        "title": "Table Mountain, Cape Town",
+        "country": "South Africa",
+        "city": "Cape Town",
+        "latitude": -33.9628,
+        "longitude": 18.4098,
+        "url": "rtsp://streams.example.com/capetown-tablemountain",
+        "status": "active",
+        "resolution": "720p",
+        "fps": 25
+    },
+    {
+        "title": "Golden Gate Bridge, SF",
+        "country": "USA",
+        "city": "San Francisco",
+        "latitude": 37.8199,
+        "longitude": -122.4783,
+        "url": "rtsp://streams.example.com/sf-goldengate",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
+    },
+    {
+        "title": "Zócalo, Mexico City",
+        "country": "Mexico",
+        "city": "Mexico City",
+        "latitude": 19.4326,
+        "longitude": -99.1332,
+        "url": "rtsp://streams.example.com/mexicocity-zocalo",
+        "status": "active",
+        "resolution": "720p",
+        "fps": 25
+    },
+    {
+        "title": "Sensō-ji Temple, Tokyo",
+        "country": "Japan",
+        "city": "Tokyo",
+        "latitude": 35.7148,
+        "longitude": 139.7967,
+        "url": "rtsp://streams.example.com/tokyo-sensoji",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
+    },
+    {
+        "title": "Victoria Harbour, Hong Kong",
+        "country": "China",
+        "city": "Hong Kong",
+        "latitude": 22.2855,
+        "longitude": 114.1577,
+        "url": "rtsp://streams.example.com/hongkong-victoriaharbour",
+        "status": "active",
+        "resolution": "1080p",
+        "fps": 30
     }
 ]
