@@ -11,6 +11,29 @@ function App() {
     const [activeStreams, setActiveStreams] = useState(streamData);
     const [selectedStream, setSelectedStream] = useState(null);
 
+    // Simulate dynamic stream status
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveStreams(prev => {
+                const newStreams = [...prev];
+                const randomIndex = Math.floor(Math.random() * newStreams.length);
+                const stream = newStreams[randomIndex];
+
+                // For simulation, we just log it or we could actually remove it
+                // To keep the UI stable but dynamic, let's just rotate the list
+                // OR better: actually remove and re-add after a delay
+                if (newStreams.length > 5 && Math.random() > 0.5) {
+                    newStreams.splice(randomIndex, 1);
+                } else if (newStreams.length < streamData.length) {
+                    const missing = streamData.find(s => !newStreams.includes(s));
+                    if (missing) newStreams.push(missing);
+                }
+                return newStreams;
+            });
+        }, 8000);
+        return () => clearInterval(interval);
+    }, []);
+
     const handlePointClick = useCallback((point) => {
         setSelectedStream(point);
     }, []);
