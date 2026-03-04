@@ -1,10 +1,13 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Globe from 'react-globe.gl';
 import * as THREE from 'three';
 import streamData from './data.json';
+import { useGlobe } from './GlobeContext';
 
-const LofiGlobe = () => {
-  const globeEl = useRef();
+const DEFAULT_ALTITUDE = 2.5;
+
+const LofiGlobe = ({ onPointClick }) => {
+  const { globeRef } = useGlobe();
   const [landPolygons, setLandPolygons] = useState([]);
   const [streams, setStreams] = useState([]);
 
@@ -23,7 +26,10 @@ const LofiGlobe = () => {
         lng: s.longitude,
         size: 0.5,
         color: 'red',
-        title: s.title
+        title: s.title,
+        url: s.url,
+        city: s.city,
+        country: s.country,
       }));
       setStreams(formattedStreams);
     } else {
@@ -31,10 +37,10 @@ const LofiGlobe = () => {
     }
   }, []);
 
-  const handleGlobeReady = () => {
-    if (globeEl.current) {
+  const handleGlobeReady = useCallback(() => {
+    if (globeRef.current) {
       // Auto-rotate
-      const controls = globeEl.current.controls();
+      const controls = globeRef.current.controls();
       controls.autoRotate = true;
       controls.autoRotateSpeed = 0.7;
       controls.enableZoom = true;
@@ -46,7 +52,7 @@ const LofiGlobe = () => {
 
       // Use setTimeout to ensure we override any internal initialization
       setTimeout(() => {
-        const globeObj = globeEl.current;
+        const globeObj = globeRef.current;
         if (globeObj && globeObj.globeMaterial) {
           // Switch to MeshLambertMaterial with high emissive to force light grey color
           const newMat = new THREE.MeshLambertMaterial({
@@ -58,22 +64,37 @@ const LofiGlobe = () => {
         }
       }, 100);
     }
-  };
+  }, [globeRef]);
+
+  const handlePointClick = useCallback((point) => {
+    if (onPointClick) {
+      onPointClick(point);
+    }
+    // Stop auto-rotate and fly to point
+    if (globeRef.current) {
+      const controls = globeRef.current.controls();
+      controls.autoRotate = false;
+      globeRef.current.pointOfView(
+        { lat: point.lat, lng: point.lng, altitude: 0.8 },
+        1200
+      );
+    }
+  }, [globeRef, onPointClick]);
 
   return (
     <div style={{ width: '100vw', height: '100vh', cursor: 'move', marginLeft: '8vw' }}>
       <Globe
-        ref={globeEl}
+        ref={globeRef}
         onGlobeReady={handleGlobeReady}
         globeImageUrl={null}
-        backgroundColor="rgba(0,0,0,0)" // Transparent, let body bg show through (White)
-        showAtmosphere={false} // Disable blue halo/vignette
+        backgroundColor="rgba(0,0,0,0)"
+        showAtmosphere={false}
 
         // Landmass (Hexagons) - Dark Grey
         hexPolygonsData={landPolygons}
         hexPolygonResolution={3}
         hexPolygonMargin={0.3}
-        hexPolygonColor={() => '#a0a0a0'} // Darker Grey Continents
+        hexPolygonColor={() => '#a0a0a0'}
 
         // Stream Points
         pointsData={streams}
@@ -81,6 +102,7 @@ const LofiGlobe = () => {
         pointColor="color"
         pointRadius="size"
         pointLabel="title"
+        onPointClick={handlePointClick}
       />
     </div>
   );
